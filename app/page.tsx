@@ -32,7 +32,7 @@ export default function Home() {
       <header className="max-w-[1200px] mx-auto w-full px-4 sm:px-6 flex items-center justify-between py-4">
         <div className="flex items-center gap-2">
           <Image src="/images/logo.png" alt="SimplePills Logo" width={50} height={50} />
-          <span className="font-semibold">Simple Health Solutions</span>
+          <span className="font-semibold">SimplePills</span>
         </div>
         <nav className="hidden md:flex items-center gap-6">
           <Link href="#services" className="text-sm hover:text-lime-600">
