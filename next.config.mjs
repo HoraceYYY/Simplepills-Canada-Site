@@ -12,7 +12,7 @@ const nextConfig = {
   },
   // GitHub Pages uses a subdirectory based on repository name
   // Uncomment and update this value if your repo is named differently than your domain root
-  basePath: '/simple-health-solutions', // Assuming your repository name is 'simple-health-solutions'
+  basePath: '/simplepills-canada-site', // Assuming your repository name is 'simple-health-solutions'
   trailingSlash: true,
 };
 
