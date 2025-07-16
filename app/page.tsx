@@ -77,12 +77,19 @@ export default function Home() {
             <ReportCard number={1} title="Health Benefit Plan Analysis" iconSrc="/images/icon-health-analysis.png" />
             <ReportCard
               number={2}
-              title="Personalized Health Coverage"
-              subtitle="Recommendations"
+              title="Personalized Health Coverage Recommendations"
               iconSrc="/images/icon-health-coverage.png"
             />
-            <ReportCard number={3} title="Healthcare Cost Comparison" iconSrc="/images/icon-cost-comparison.png" />
-            <ReportCard number={4} title="Digital Reporting & Guidance" iconSrc="/images/icon-digital-reporting.png" />
+            <ReportCard
+              number={3}
+              title="Healthcare Cost Comparison Analysis"
+              iconSrc="/images/icon-cost-comparison.png"
+            />
+            <ReportCard
+              number={4}
+              title="Digital Reporting & Guidance Platform"
+              iconSrc="/images/icon-digital-reporting.png"
+            />
           </div>
 
           <div className="flex justify-center mt-8">
