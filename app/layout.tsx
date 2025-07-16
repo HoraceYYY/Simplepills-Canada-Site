@@ -7,7 +7,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Simple Health Solutions",
+  title: "SimplePills",
   description: "We help you understand and navigate your health benefits",
     generator: 'v0.dev'
 }

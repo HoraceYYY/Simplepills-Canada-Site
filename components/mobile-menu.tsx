@@ -41,7 +41,7 @@ export function MobileMenu({ onContactClick }: MobileMenuProps) {
           <div className="flex justify-between items-center p-4 border-b">
             <div className="flex items-center gap-2">
               <Image src="/images/logo.png" alt="SimplePills Logo" width={40} height={40} />
-              <span className="font-semibold">Simple Health Solutions</span>
+              <span className="font-semibold">SimplePills</span>
             </div>
             <button
               onClick={toggleMenu}
