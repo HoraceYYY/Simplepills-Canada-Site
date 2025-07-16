@@ -6,13 +6,13 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  output: 'export',
+  output: 'export', // Ensures Next.js builds a static HTML site
   images: {
-    unoptimized: true,
+    unoptimized: true, // Required for static export if using Next/Image
   },
   // GitHub Pages uses a subdirectory based on repository name
-  // If your repo is named differently, update this value
-  // basePath: '/simple-health-solutions',
+  // Uncomment and update this value if your repo is named differently than your domain root
+  basePath: '/simple-health-solutions', // Assuming your repository name is 'simple-health-solutions'
   trailingSlash: true,
 };
 
