@@ -17,11 +17,13 @@ export function ContactForm({ isOpen, onClose }: ContactFormProps) {
     phone: "",
     email: "",
     message: "",
+    phoneOptIn: false,
   })
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
+    const { name, value, type } = e.target
+    const newValue = type === "checkbox" ? (e.target as HTMLInputElement).checked : value
+    setFormData((prev) => ({ ...prev, [name]: newValue }))
   }
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -29,7 +31,7 @@ export function ContactForm({ isOpen, onClose }: ContactFormProps) {
     // Here you would typically send the form data to your backend
     console.log("Form submitted:", formData)
     alert("Thank you for your message! We'll get back to you soon.")
-    setFormData({ name: "", phone: "", email: "", message: "" })
+    setFormData({ name: "", phone: "", email: "", message: "", phoneOptIn: false })
     onClose()
   }
 
@@ -89,6 +91,19 @@ export function ContactForm({ isOpen, onClose }: ContactFormProps) {
                 className="w-full p-3 border border-gray-300 rounded-md h-32 resize-none"
                 required
               />
+
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  name="phoneOptIn"
+                  checked={formData.phoneOptIn}
+                  onChange={handleChange}
+                  className="mt-1 h-4 w-4 rounded border-gray-300 text-[#00a0e3] focus:ring-[#00a0e3]"
+                />
+                <span className="text-sm text-gray-600 leading-relaxed">
+                  I consent to receive text messages related to my order status and inquiries. Message and data rates may apply. You can opt out at any time by replying STOP.
+                </span>
+              </label>
 
               <Button type="submit" className="w-full bg-gray-200 hover:bg-gray-300 text-black font-medium py-3">
                 Send

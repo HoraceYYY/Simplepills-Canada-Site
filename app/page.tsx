@@ -303,12 +303,12 @@ export default function Home() {
               <h3 className="font-semibold mb-4">Legal & Compliance</h3>
               <ul className="space-y-2">
                 <li>
-                  <Link href="#" className="text-sm hover:text-lime-600">
+                  <Link href="/terms" className="text-sm hover:text-lime-600">
                     Terms of Use
                   </Link>
                 </li>
                 <li>
-                  <Link href="#" className="text-sm hover:text-lime-600">
+                  <Link href="/privacy" className="text-sm hover:text-lime-600">
                     Privacy Policy
                   </Link>
                 </li>
