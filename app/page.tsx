@@ -3,7 +3,7 @@
 import { useState, useEffect, Suspense } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { useSearchParams, useRouter } from "next/navigation"
+import { useSearchParams } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { ReportCard } from "@/components/report-card"
@@ -14,25 +14,41 @@ import { ContactForm } from "@/components/contact-form"
 function HomeContent() {
   const [isContactFormOpen, setIsContactFormOpen] = useState(false)
   const searchParams = useSearchParams()
-  const router = useRouter()
 
-  // Check URL for contact parameter on load and when searchParams change
+  // Check URL for contact parameter (query string or hash) on load
   useEffect(() => {
+    // Check query parameter first
     if (searchParams.get("contact") === "true") {
       setIsContactFormOpen(true)
+      // Clean up URL by replacing with hash
+      window.history.replaceState(null, "", "/#contact")
     }
+    // Check hash on initial load
+    if (window.location.hash === "#contact") {
+      setIsContactFormOpen(true)
+    }
+
+    // Listen for hash changes
+    const handleHashChange = () => {
+      if (window.location.hash === "#contact") {
+        setIsContactFormOpen(true)
+      }
+    }
+
+    window.addEventListener("hashchange", handleHashChange)
+    return () => window.removeEventListener("hashchange", handleHashChange)
   }, [searchParams])
 
   const openContactForm = () => {
     setIsContactFormOpen(true)
-    // Update URL to include contact parameter
-    router.push("/?contact=true", { scroll: false })
+    // Update URL to include contact hash (preserved during redirects)
+    window.history.pushState(null, "", "/#contact")
   }
 
   const closeContactForm = () => {
     setIsContactFormOpen(false)
-    // Remove contact parameter from URL
-    router.push("/", { scroll: false })
+    // Remove contact hash from URL
+    window.history.pushState(null, "", "/")
   }
 
   const downloadSampleReport = () => {
