@@ -300,6 +300,130 @@ function HomeContent() {
         </div>
       </section>
 
+      {/* SMS Opt-In Section - Max Width 1200px */}
+      <section id="sms-optin" className="py-16 scroll-mt-20">
+        <div className="max-w-[1200px] mx-auto w-full px-4 sm:px-6">
+          <div className="max-w-2xl mx-auto">
+            <h2 className="text-2xl font-semibold text-center mb-4">
+              Stay Updated on Your <span className="text-orange-500">Order Status</span>
+            </h2>
+            <p className="text-center text-gray-600 mb-8">
+              Register your phone number to receive transactional SMS updates about your orders, including order status,
+              shipping confirmations, and tracking information.
+            </p>
+
+            <div className="bg-lime-50 rounded-lg p-6 mb-6">
+              <div className="flex items-start gap-3 mb-4">
+                <div className="bg-lime-500 rounded-full p-2 flex-shrink-0">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-1">Transactional Messages Only</h3>
+                  <p className="text-sm text-gray-600">
+                    We only send messages related to your active orders or service requests. No marketing or promotional
+                    messages will be sent.
+                  </p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="bg-lime-500 rounded-full p-2 flex-shrink-0">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="white"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
+                    <path d="m9 12 2 2 4-4" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-1">Easy Opt-Out</h3>
+                  <p className="text-sm text-gray-600">
+                    You can opt out at any time by replying STOP to any message. Message and data rates may apply.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <form
+              className="space-y-4"
+              onSubmit={(e) => {
+                e.preventDefault()
+                const form = e.target as HTMLFormElement
+                const formData = new FormData(form)
+                const phone = formData.get("phone")
+                const consent = formData.get("smsConsent")
+                if (phone && consent) {
+                  alert("Thank you for registering! You will now receive SMS updates about your orders.")
+                  form.reset()
+                }
+              }}
+            >
+              <div>
+                <label htmlFor="sms-phone" className="block text-sm font-medium mb-1">
+                  Phone Number
+                </label>
+                <input
+                  type="tel"
+                  id="sms-phone"
+                  name="phone"
+                  placeholder="(555) 123-4567"
+                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-lime-500"
+                  required
+                />
+              </div>
+
+              <label className="flex items-start gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  name="smsConsent"
+                  className="mt-1 h-4 w-4 rounded border-gray-300 text-lime-500 focus:ring-lime-500"
+                  required
+                />
+                <span className="text-sm text-gray-600 leading-relaxed">
+                  I consent to receive text messages from SimplePills related to my order status and inquiries. Message
+                  and data rates may apply. You can opt out at any time by replying STOP.
+                </span>
+              </label>
+
+              <Button type="submit" className="w-full bg-lime-500 hover:bg-lime-600 text-black font-medium py-3">
+                Register for SMS Updates
+              </Button>
+
+              <p className="text-xs text-center text-gray-500">
+                By registering, you agree to our{" "}
+                <Link href="/terms" className="text-lime-600 hover:underline">
+                  Terms of Use
+                </Link>{" "}
+                and{" "}
+                <Link href="/privacy" className="text-lime-600 hover:underline">
+                  Privacy Policy
+                </Link>
+                .
+              </p>
+            </form>
+          </div>
+        </div>
+      </section>
+
       {/* Footer - Max Width 1200px */}
       <footer className="bg-white py-8 border-t">
         <div className="max-w-[1200px] mx-auto w-full px-4 sm:px-6">
