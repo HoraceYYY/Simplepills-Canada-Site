@@ -1,8 +1,9 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect, Suspense } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import { useSearchParams, useRouter } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { ReportCard } from "@/components/report-card"
@@ -10,11 +11,29 @@ import { HeroCarousel } from "@/components/hero-carousel"
 import { MobileMenu } from "@/components/mobile-menu"
 import { ContactForm } from "@/components/contact-form"
 
-export default function Home() {
+function HomeContent() {
   const [isContactFormOpen, setIsContactFormOpen] = useState(false)
+  const searchParams = useSearchParams()
+  const router = useRouter()
 
-  const openContactForm = () => setIsContactFormOpen(true)
-  const closeContactForm = () => setIsContactFormOpen(false)
+  // Check URL for contact parameter on load and when searchParams change
+  useEffect(() => {
+    if (searchParams.get("contact") === "true") {
+      setIsContactFormOpen(true)
+    }
+  }, [searchParams])
+
+  const openContactForm = () => {
+    setIsContactFormOpen(true)
+    // Update URL to include contact parameter
+    router.push("/?contact=true", { scroll: false })
+  }
+
+  const closeContactForm = () => {
+    setIsContactFormOpen(false)
+    // Remove contact parameter from URL
+    router.push("/", { scroll: false })
+  }
 
   const downloadSampleReport = () => {
     // Create a link to the PDF file and trigger a download
@@ -328,5 +347,13 @@ export default function Home() {
       {/* Contact Form Modal */}
       <ContactForm isOpen={isContactFormOpen} onClose={closeContactForm} />
     </div>
+  )
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<div className="flex items-center justify-center min-h-screen">Loading...</div>}>
+      <HomeContent />
+    </Suspense>
   )
 }
